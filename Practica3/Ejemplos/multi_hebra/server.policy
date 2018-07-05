@@ -1,0 +1,3 @@
+grant codeBase "file:///C:/Users/froxendo/p4_RMI/multi_hebra/" {
+    permission java.security.AllPermission;
+};

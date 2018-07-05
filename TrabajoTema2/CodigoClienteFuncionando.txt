@@ -1,0 +1,60 @@
+package trabajotema2;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.net.URL;
+import java.net.URLClassLoader;
+
+public class TrabajoTema2 implements java.io.Serializable{
+    public static void main(String[] args) throws IOException, ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        
+    //Creamos el loader
+    ClassLoader classLoader = TrabajoTema2.class.getClassLoader();
+
+    try {
+        //Hacemos el load de la clase
+        Class aClass = classLoader.loadClass("ClaseASerializar");
+        //System.out.println("aClass.getName() = " + aClass.getName());
+        Object newObject = Class.forName(aClass.getName()).newInstance();
+        Method[] methods = aClass.getMethods();
+        for (Method item : methods) {
+            System.out.print(item.getName()+'\n');
+        }
+
+        FileInputStream fis = new FileInputStream("./src/trabajotema2/fichero.salida");
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        Object object = (Object) ois.readObject();
+        
+            String nombre = methods[2].getName();
+            Method method = aClass.getMethod(nombre,null);
+            Object o = method.invoke(object, null);
+            System.out.println(o);
+            
+
+            ois.close();
+
+//        FileInputStream fis = new FileInputStream("./src/trabajotema2/fichero.salida");
+//        ObjectInputStream ois = new ObjectInputStream(fis);
+//        Object object = (Object) ois.readObject();
+//        String nombre = methods[2].getName();
+//        Method method = aClass.getMethod(nombre,null);
+//        Object o = method.invoke(object, null);
+//        System.out.println(o);
+//        ois.close();
+
+//        for (Method item : methods) {
+//            String nombre = item.getName();
+//            Method method = aClass.getMethod(nombre,null);
+//            method.setAccessible(true);
+//            Object o = method.invoke(newObject, null);
+//            System.out.println(o);
+//        }
+
+    } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+    }
+ }
+}   

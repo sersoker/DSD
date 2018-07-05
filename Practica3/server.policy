@@ -1,0 +1,3 @@
+grant codeBase "file:/home/mangox/simple/" {
+    permission java.security.AllPermission;
+};

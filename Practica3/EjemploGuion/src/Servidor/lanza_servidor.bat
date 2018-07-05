@@ -1,0 +1,1 @@
+"C:\Program Files\Java\jdk1.7.0_80\bin\java" -cp .. -Djava.rmi.server.codebase=file:/C:/Users/sersoker/Dropbox/Universidad/DSD/Practica3/EjemploGuion/src/Servidor/ -Djava.rmi.server.hostname=localhost -Djava.security.policy=../server.policy Servidor.Ejemplo

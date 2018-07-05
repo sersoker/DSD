@@ -1,0 +1,38 @@
+netstat -atu 
+	Muestra los socket y conexiones del sistema (activas o en escucha)
+	-a -> Solicita conexiones establecidas
+	-t -> tcp
+	-u -> udp
+
+more /etc/services
+	Listado de puertos y servicios asociados
+
+0..1023 Puertos reservados (bien conocidos)
+
+1024..65535 Puertos del desarollador (de uso)
+
+rmiregistry	1099/tcp					rmiregistry	1099/udp 					//# Java RMI Registry 		Usado en la practica 2.
+sunrpc		111/tcp		portmapper		sunrpc		111/udp		portmapper		//# RPC 4.0 portmapper 		Usado en la practica 1.
+	Hace referencia a la posibilidad de invocar un metodo (o procedimiento) de manera remota.
+
+IDL que utilizaremos : RPCGEN -> Es un lenguaje de especificacion de interfaces para RPC y tambien el nombre del compilador.
+	Es un lenguaje de especificacion de lenguajes parecido a C, pero NO IGUAL!
+	Permite el uso de estructuras variables.
+	Extension .x -> con cabeceras y estructuras de datos
+		Ejemplo.- a.x
+		Compilamos con rpcgen -NCa a.x
+			Genera:
+					- a_client.c 	TOCAR AQUI
+					- a_clnt.c
+					- a_xdr.c
+					- a.h
+					- a_svc.c
+					- a_server.c 	TOCAR AQUI
+					- makefile.a
+		Con el make: make -f makefile.a
+			Genera:
+					- a_server
+					- a_client
+	Pista: Si generamos un fichero .x, al generar los ficheros y hacer un make, teoricamente se deben generar los dos ejecutables.
+	Pista: En el segundo ejercicio propuesto se manejan cadenas de caracteres, rpcgen tiene string, pero c no, setraduce a char * __  y cualquier cosa que almacenemos en c, necesitamos hacer un malloc para memoria, ya que no disponemos de un tamaño, tambien habrá que borrarla luego.
+	

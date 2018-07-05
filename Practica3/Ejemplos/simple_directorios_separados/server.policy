@@ -1,0 +1,3 @@
+grant codeBase "file:///C:/Users/froxendo/p4_RMI/simple_directorios_separados/-" {
+    permission java.security.AllPermission;
+};
